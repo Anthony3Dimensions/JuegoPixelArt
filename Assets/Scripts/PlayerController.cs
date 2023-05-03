@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-     public float playerSpeed = 8f;
+    public float playerSpeed = 8f;
     public float jumpforce = 8f;
     public SpriteRenderer spriteRenderer;
     private Rigidbody2D rBody;
@@ -44,4 +44,15 @@ public class PlayerController : MonoBehaviour
     {
         rBody.velocity = new Vector2(horizontal * playerSpeed, rBody.velocity.y);
     }
+
+     private void OnCollisionEnter2D(Collision2D collision)
+    {
+      if (collision.gameObject.tag == "colisionitem")
+      {
+         Items items = collision.gameObject.GetComponent<Items>();
+         items.Pick();
+      }
+    }
+
+
 }
